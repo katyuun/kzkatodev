@@ -1,0 +1,480 @@
+@use "../../common/variables" as *;
+.recruit-title {
+  text-align: center;
+  font-size: p(32);
+  margin-top: p(60);
+
+  @include tab {
+    font-size: t(32);
+    margin-top: t(60);
+  }
+
+  @include sp {
+    font-size: s(22);
+    margin-top: s(60);
+    margin-bottom: s(48);
+  }
+}
+
+//==================================================
+// 募集要項
+//==================================================
+.job {
+  &--description {
+    &-pc {
+      margin-top: p(60);
+      margin-bottom: p(40);
+
+      @include tab {
+        margin-top: t(60);
+        margin-bottom: t(40);
+      }
+
+      @include sp {
+        display: none;
+      }
+    }
+
+    &-sp {
+      display: none;
+
+      @include tab {
+        display: none;
+      }
+
+      @include sp {
+        display: block;
+        margin-bottom: s(40);
+      }
+    }
+
+    &-ttile-wrap {
+      display: flex;
+      justify-content: center;
+
+      @include tab {
+        width: 98%;
+        margin: auto;
+      }
+
+      @include sp {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    &-table {
+      margin: auto;
+      background-color: #fff;
+      color: #1D1614;
+      display: none;
+      padding: p(60) p(80);
+      width: p(920);
+      font-size: p(16);
+
+      @include tab {
+        padding: t(60) t(80);
+        width: t(920);
+        font-size: t(16);
+      }
+
+      @include sp {
+        display: block;
+        padding: s(20) s(20);
+        width: 100%;
+        font-size: s(16);
+      }
+
+      &-caption {
+        text-align: center;
+        margin-bottom: p(24);
+
+        @include tab {
+          margin-bottom: t(24);
+        }
+
+        @include sp {
+          margin-bottom: s(24);
+        }
+
+        &-ttl {
+          font-size: p(24);
+          margin-bottom: p(16);
+
+          @include tab {
+            font-size: t(24);
+            margin-bottom: t(16);
+          }
+
+          @include sp {
+            font-size: s(22);
+            margin-bottom: s(16);
+          }
+        }
+
+        &-attend {
+          color: #983636;
+
+          @include sp {
+            text-align: left;
+            line-height: 1.6;
+          }
+
+        }
+      }
+    }
+
+    &-details {
+      display: flex;
+      line-height: 1.5;
+
+      @include sp {
+        flex-direction: column;
+      }
+
+      &+& {
+        margin-top: p(32);
+
+        @include tab {
+          margin-top: p(32);
+        }
+
+        @include sp {
+          margin-top: p(60);
+        }
+      }
+
+      &-title {
+        text-align: center;
+        border: solid 1px #fff;
+        cursor: pointer;
+        font-weight: bold;
+        color: #fff;
+        background-color: unset;
+        width: p(300);
+        font-size: p(20);
+        padding: p(20) 0;
+
+        @include tab {
+          width: t(300);
+          font-size: t(20);
+          padding: t(20) 0;
+        }
+
+        @include sp {
+          width: 100%;
+          font-size: s(16);
+          padding: s(20) 0;
+        }
+
+        &+& {
+          margin-left: p(10);
+
+          @include tab {
+            margin-left: t(10);
+          }
+
+          @include sp {
+            margin-left: 0;
+          }
+        }
+      }
+
+      &-items {
+        display: block;
+        font-weight: bold;
+        width: 140px;
+        margin-right: p(20);
+
+        @include tab {
+          width: t(115);
+          margin-right: t(70);
+        }
+
+        @include sp {
+          width: s(115);
+          margin-right: s(70);
+        }
+      }
+
+      &-text {
+        display: block;
+        width: 100%;
+
+        @include sp {
+          margin-top: p(20);
+        }
+      }
+    }
+  }
+}
+
+.is-active {
+  display: block;
+
+}
+
+.is-tab-active {
+  border: 1px solid #fff;
+  background-color: #fff;
+  color: #1D1614;
+}
+
+.location-details {
+  text-decoration: none;
+  background-color: #504D46;
+  padding: p(10);
+  font-size: p(14);
+  margin-top: p(10);
+  width: p(300);
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include tab {
+    padding: t(10);
+    font-size: t(14);
+    margin-top: t(10);
+    width: t(300);
+  }
+
+  @include sp {
+    padding: s(10);
+    font-size: s(14);
+    margin: s(10) auto;
+    width: s(300);
+  }
+
+  & p {
+    margin-right: p(5);
+  }
+}
+
+.c-description-toggle {
+  display: none;
+}
+
+.c-description-option {
+  position: relative;
+
+  @include sp {
+    &+& {
+      margin-top: s(30);
+    }
+  }
+}
+
+.c-description-title,
+.c-description-content {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: all 0.3s;
+}
+
+.c-description-title {
+  border: solid 1px #ccc;
+  padding: s(20) s(20);
+  text-align: center;
+  display: block;
+  color: #fff;
+  font-weight: bold;
+}
+
+.c-description-title::after,
+.c-description-title::before {
+  content: "";
+  position: absolute;
+  right: 1.25em;
+  top: 1.25em;
+  width: 2px;
+  height: 0.75em;
+  background-color: #999;
+  transition: all 0.3s;
+}
+
+.c-description-content {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.c-description-toggle:checked+.c-description-title+.c-description-content {
+  max-height: 4500px;
+  transition: all .5s;
+}
+
+.c-description-toggle:checked+.c-description-title::before {
+  transform: rotate(90deg) !important;
+}
+
+.c-description-title::after {
+  transform: rotate(90deg);
+}
+
+//==================================================
+// 採用までの流れ
+//==================================================
+.recruit--flow-wrap {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  color: #000000;
+  width: 100%;
+  font-size: p(16);
+  margin-top: p(56);
+
+  @include tab {
+    // padding: t(60) t(80);
+    // width: t(920);
+    font-size: t(16);
+    margin-top: t(56);
+  }
+
+  @include sp {
+    flex-direction: column;
+    padding: 0 s(20) 0;
+    width: 100%;
+    font-size: s(16);
+    margin-top: s(30);
+  }
+}
+
+.recruit--flow-block {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  padding: 0 p(20);
+  width: 25%;
+  height: p(240);
+  min-height: p(200);
+  background-color: #fff;
+
+  @include tab {
+    width: 100%;
+    height: t(220);
+    padding: 0 t(20);
+  }
+
+  @include sp {
+    width: 100%;
+    min-height: s(160);
+    height: unset;
+    padding: s(20) s(20);
+  }
+
+  &+& {
+    margin-left: p(40);
+
+    @include tab {
+      margin-left: t(40);
+    }
+
+    @include sp {
+      margin: s(40) 0 0;
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 42%;
+    left: 78%;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+    border-width: 30px 50px 0 50px;
+    transform: rotate(270deg);
+    z-index: 1;
+
+    @include tab {
+      // bottom: -9%;
+      // left: 42%;
+      // transform: rotate(0deg);
+      bottom: 42%;
+      left: unset;
+      right: -30%;
+    }
+
+    @include sp {
+      bottom: s(-10);
+      left: s(115);
+      transform: rotate(0deg);
+    }
+  }
+}
+
+.recruit--flow-block:last-child {
+  &::after {
+    display: none;
+  }
+}
+
+.recruit--flow-block-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.recruit--flow-block-content {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 9px;
+  line-height: 1.2;
+}
+
+.recruit-remarks {
+  font-size: 16px;
+  margin: p(40) 0;
+  line-height: 1.5;
+
+  @include tab {
+    margin-top: t(16);
+  }
+
+  @include sp {
+    margin: s(40) s(20);
+  }
+}
+
+.recruit-remarks+.l_btn {
+  width: 80%;
+  margin: auto;
+}
+
+.common--black-bg {
+  background-color: #000000;
+  position: absolute;
+  top: 50px;
+}
+
+.u-position-relative {
+  position: relative;
+  z-index: 1;
+}
+
+.recruit--flow-block-remarks {
+  margin-top: p(20);
+
+  @include tab {
+    margin-top: t(20);
+  }
+
+  @include sp {
+    margin-top: s(10);
+  }
+}
+
+.u-adoption {
+  background-color: #CBC5B7;
+}
+
+.u-color-red {
+  color: #983636;
+  font-weight: bold;
+}

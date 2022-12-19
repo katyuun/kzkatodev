@@ -1,0 +1,72 @@
+
+@charset "UTF-8";
+
+// ブレイクポイント
+$pc_w: 1800; // PC画面幅
+$tab_w: 1280; // タブレット画面幅
+$sp_w: 375; // スマホ画面幅
+
+@mixin tab {
+
+  // タブレット
+  @media (max-width: 1279px) {
+    @content;
+  }
+}
+
+@mixin sp {
+
+  // スマホ
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+$pc: (
+  (1 / $pc_w)*100vw
+);
+$tab: (
+  (1 / $tab_w)*100vw
+);
+$sp: (
+  (1 / $sp_w)*100vw
+);
+
+
+@function p($size, $viewport: $pc_w) {
+  $vw: $size * ((1 / $viewport)*100vw);
+  $px: $size * 1px;
+  @return min(#{$vw}, #{$px});
+}
+
+@function t($size, $viewport: $tab_w) {
+  @return $size * $tab;
+}
+
+@function s($size, $viewport: $sp_w) {
+  @return $size * $sp;
+}
+
+body {
+  font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
+  font-weight: 400;
+  font-size: p(16);
+  color: #fff;
+  font-weight: 400;
+
+  @include sp {
+    font-size: s(16);
+  }
+}
+
+a {
+  color: #fff;
+}
+
+.font-serif {
+  font-family: 'Noto Serif JP', serif;
+}
+
+.font-lib {
+  font-family: 'Libre Baskerville', serif;
+}

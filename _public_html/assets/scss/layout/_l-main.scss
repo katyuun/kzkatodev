@@ -1,0 +1,14 @@
+body {
+  height: 2000px;
+}
+
+.l-main {
+  padding: 40px;
+  background-color: #eee;
+  display: flex;
+  justify-content: space-between;
+}
+
+.l-main__inner {
+  margin-top: 500px;
+}
